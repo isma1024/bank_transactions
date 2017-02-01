@@ -1,0 +1,25 @@
+<h1>Listing Categories</h1>
+
+<p>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td>
+            <%= link_to 'Edit', edit_category_path(category) %>
+            <%= link_to 'Delete', category, :method => 'delete' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</p>
+
+<p><%= link_to 'New category', new_category_path %></p>

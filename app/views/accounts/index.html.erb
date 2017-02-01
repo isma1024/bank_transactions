@@ -1,0 +1,27 @@
+<h1>Listing Accounts</h1>
+
+<p>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @accounts.each do |account| %>
+          <tr>
+            <td><%= link_to account.name, account_transactions_path(account) %></td>
+            <td><%= account.balance %> &euro;</td>
+            <td>
+              <%= link_to 'edit', edit_account_path(account) %>
+              <%= link_to 'Delete', account, :method => 'delete' %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+<p><%= link_to 'New account', new_account_path %></p>
+

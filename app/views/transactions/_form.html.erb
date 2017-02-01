@@ -1,0 +1,29 @@
+<%= form_for @transaction, :url => (@transaction.id.nil? ? account_transactions_path(@account) : account_transaction_path(@transaction)) do |form| %>
+    <% if @transaction.errors.any? %>
+        <div id="error_explanation" style="color: red;">
+          <ul>
+            <% @transaction.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_field :description %>
+    </p>
+
+    <p>
+      <%= form.label :import %><br>
+      <%= form.text_field :import %>
+    </p>
+
+    <p>
+      <%= form.select(:category_id, options_from_collection_for_select(Category.all, :id, :name, @transaction.category.nil? ? 0 : @transaction.category.id)) %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+<% end -%>

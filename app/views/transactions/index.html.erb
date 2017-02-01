@@ -1,0 +1,38 @@
+<h1>Listing transactions of '<%= @account.name %>'</h1>
+
+<p><%= link_to 'New transaction', new_account_transaction_path %></p>
+
+<p>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th>Import (&euro;)</th>
+      <th>Category</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @account.transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.description %></td>
+          <td><%= transaction.import %> &euro;</td>
+          <td><%= transaction.category.nil? ? '-' : transaction.category.name %></td>
+          <td>
+            <%= link_to 'Edit', edit_account_transaction_path(@account, transaction) %>
+            <%= link_to 'Delete', account_transaction_path(@account, transaction), :method => 'delete' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <th><%= @account.transactions.sum(:import) %></th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+</p>
+
+<p><%= link_to 'Manage categories', categories_path %></p>

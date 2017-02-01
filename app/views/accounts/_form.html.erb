@@ -1,0 +1,30 @@
+<%= form_for @account do |form| %>
+    <% if @account.errors.any? %>
+        <div id="error_explanation" style="color: red;">
+          <ul>
+            <% @account.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %>
+    </p>
+
+    <p>
+      <%= form.label :balance %><br>
+      <%= form.text_field :balance %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+<% end -%>
