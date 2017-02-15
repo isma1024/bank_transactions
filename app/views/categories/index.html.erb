@@ -1,25 +1,43 @@
-<h1>Listing Categories</h1>
+<section class="content">
 
-<p>
-  <table border="1">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @categories.each do |category| %>
-        <tr>
-          <td><%= category.name %></td>
-          <td>
-            <%= link_to 'Edit', edit_category_path(category) %>
-            <%= link_to 'Delete', category, :method => 'delete' %>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-</p>
+  <div class="row">
 
-<p><%= link_to 'New category', new_category_path %></p>
+    <div class="col-md-12">
+      <div class="box">
+
+        <div class="box-header">
+          <h3 class="box-title">Listing Categories</h3>
+        </div>
+
+        <div class="box-body">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @categories.each do |category| %>
+                <tr>
+                  <td><%= category.name %></td>
+                  <td>
+                    <%= link_to 'Edit', edit_category_path(category), { :class => 'btn btn-xs btn-warning' } %>
+                    <%= link_to 'Delete', category, :method => 'delete', :class => 'btn btn-xs btn-danger' %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box-footer">
+          <%= link_to 'New category', new_category_path, { :class => 'btn btn-primary' } %>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>

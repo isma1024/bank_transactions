@@ -8,11 +8,16 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <ul>
-      <li><%= link_to 'Accounts', accounts_path %></li>
-      <li><%= link_to 'Categories', categories_path %></li>
-    </ul>
-    <%= yield %>
+  <body class="hold-transition skin-blue">
+      <%= render partial: 'header' %>
+
+      <div class="wrapper row-offcanvas row-offcanvas-left">
+        <aside class="left-side sidebar-offcanvas">
+          <%= render partial: 'menu' %>
+        </aside>
+        <aside class="right-side">
+          <%= yield %>
+        </aside>
+      </div>
   </body>
 </html>

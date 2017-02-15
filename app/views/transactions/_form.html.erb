@@ -9,21 +9,38 @@
         </div>
     <% end %>
 
-    <p>
-      <%= form.label :description %><br>
-      <%= form.text_field :description %>
-    </p>
+    <div class="row">
 
-    <p>
-      <%= form.label :import %><br>
-      <%= form.text_field :import %>
-    </p>
+      <div class="col-md-6">
 
-    <p>
-      <%= form.select(:category_id, options_from_collection_for_select(Category.all, :id, :name, @transaction.category.nil? ? 0 : @transaction.category.id)) %>
-    </p>
+        <div class="col-md-12 form-group">
+          <%= form.label :description %><br>
+          <%= form.text_field :description, :class => 'form-control' %>
+        </div>
 
-    <p>
-      <%= form.submit %>
-    </p>
+        <div class="col-md-12 form-group">
+          <%= form.label :import %><br>
+          <%= form.text_field :import, :class => 'form-control' %>
+        </div>
+
+        <div class="col-md-12 form-group">
+          <%= form.select(
+                  :category_id,
+                  options_from_collection_for_select(
+                      Category.all,
+                      :id, :name,
+                      @transaction.category.nil? ? 0 : @transaction.category.id
+                  ),
+                  {},
+                  { :class => 'form-control' }
+              ) %>
+        </div>
+
+        <div class="col-md-12  form-group">
+          <%= form.submit 'Save', :class => 'btn btn-primary' %>
+        </div>
+
+      </div>
+
+    </div>
 <% end -%>

@@ -1,55 +1,78 @@
-<h1>Listing transactions of '<%= @account.name %>'</h1>
+<p><h2></h2></p>
 
-<p><%= link_to 'New transaction', new_account_transaction_path %></p>
 
-<p>
-  <form>
-    <select name="filter_category">
-      <option value="">Filter by category</option>
-      <% @categories.each do |category| %>
-        <option value="<%= category.id %>">
-          <%= category.name %>
-        </option>
-      <% end %>
-    </select>
+<section class="content">
 
-    <button>Apply</button>
-  </form>
-</p>
+  <div class="row">
 
-<p>
-  <table border="1">
-    <thead>
-    <tr>
-      <th>Description</th>
-      <th>Import (&euro;)</th>
-      <th>Category</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @transactions.each do |transaction| %>
-        <tr>
-          <td><%= transaction.description %></td>
-          <td><%= transaction.import %> &euro;</td>
-          <td><%= transaction.category.nil? ? '-' : transaction.category.name %></td>
-          <td>
-            <%= link_to 'Edit', edit_account_transaction_path(@account, transaction) %>
-            <%= link_to 'Delete', account_transaction_path(@account, transaction), :method => 'delete' %>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Total</th>
-        <th><%= @transactions.sum(:import) %></th>
-        <th></th>
-      </tr>
-    </tfoot>
-  </table>
-</p>
+    <div class="col-md-12">
+      <div class="box">
 
-<p><%= link_to 'Manage categories', categories_path %></p>
+        <div class="box-header">
+          <h3 class="box-title">
+            Listing transactions of '<%= @account.name %>'
+          </h3>
+        </div>
 
-<p><h2>Account total balance: <%= @account.balance %> &euro;</h2></p>
+        <div class="box-body">
+
+          <div class="row">
+            <form>
+
+              <div class="col-md-4 form-group">
+                  <select class="form-control" name="filter_category">
+                    <option value="">Filter by category</option>
+                    <% @categories.each do |category| %>
+                        <option value="<%= category.id %>">
+                          <%= category.name %>
+                        </option>
+                    <% end %>
+                  </select>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <button class="btn btn-primary">Apply</button>
+              </div>
+
+              <div class="col-md-4">
+                <span style="font-weight: bold; font-size: 18px;">Account total balance: <%= @account.balance %> &euro;</span>
+              </div>
+
+            </form>
+          </div>
+
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>Description</th>
+              <th>Import (&euro;)</th>
+              <th>Category</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @transactions.each do |transaction| %>
+                <tr>
+                  <td><%= transaction.description %></td>
+                  <td><%= transaction.import %> &euro;</td>
+                  <td><%= transaction.category.nil? ? '-' : transaction.category.name %></td>
+                  <td>
+                    <%= link_to 'Edit', edit_account_transaction_path(@account, transaction), { :class => 'btn btn-xs btn-warning' } %>
+                    <%= link_to 'Delete', account_transaction_path(@account, transaction), :method => 'delete', :class => 'btn btn-xs btn-danger' %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box-footer">
+          <%= link_to 'New transaction', new_account_transaction_path, :class => 'btn btn-primary' %>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>

@@ -1,4 +1,10 @@
-## 0.2.1 (February 3, 2017)
+## 0.3 (February 15, 2017)
+
+Features:
+
+  - added adminLTE template
+
+## 0.2.1 (February 14, 2017)
 
 Features:
 
